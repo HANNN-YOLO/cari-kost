@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cari_kost/landingpage.dart';
 import 'package:flutter/material.dart';
 import 'package:cari_kost/screen/Dashboard/Pelanggang/dashboardPenyewa.dart';
@@ -96,13 +98,114 @@ class dashboard_detailkost extends StatelessWidget {
         ),
       ),
       body: Container(
-        child: GridTile(
-          child: Image.network(mydata.gambarkost,
-          height: lastbody * 0.5,
-          width: bodywidth,
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: lastbody * 0.5,
+              // color: Colors.grey,
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                image: DecorationImage(
+                  image: NetworkImage("${mydata.gambarkost}"),
+                  fit: BoxFit.cover,
+                  alignment: Alignment.center,
+                  )
+              ),
+            ),
+            SizedBox(height: lastbody * 0.01,),
+            Container(
+              height: lastbody * 0.2,
+              child: Row(
+                children: [
+                  Expanded(
+                    // color: Colors.red,
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: bodywidth * 0.01),
+                          child: Text("Nama Kost : ${mydata.namakost}"),
+                        ),
+                        SizedBox(height: lastbody * 0.01,),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: bodywidth * 0.01),
+                          child: Text(
+                            "Alamat Kost: ${mydata.alamatkost}",
+                            maxLines: 3,
+                            ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    // color: Colors.cyan,
+                    child: Column(
+                      children: [
+                        Container(
+                          child: Text("No Pemilik: ${mydata.hpkost}"),
+                        ),
+                        SizedBox(height: lastbody * 0.01,),
+                        Container(
+                          child: Text("Jumlah Kamar: ${mydata.jumlahkamar}"),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              child: Center(
+                child: Text("Harga Kamar: ${mydata.hargakamar}"),
+              ),
+            ),
+            SizedBox(height: lastbody * 0.02,),
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)
+                        )
+                      ),
+                      onPressed: (){
+                        Navigator.of(context).pushReplacementNamed(dashboardpenyewa.nameroute);
+                      }, 
+                      child: Text(
+                        "Tidak Ambil",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                        )
+                      ),
+                  ),
+                  Container(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)
+                        )
+                      ),
+                      onPressed: (){}, 
+                      child: Text(
+                        "Ambil Kamar",
+                        style: TextStyle(
+                          color: Colors.white
+                        ),
+                        )
+                      ),
+                  )
+                ],
+              ),
+            )
+          ],
         ),
-      ),
+      )
     );
   }
 }
