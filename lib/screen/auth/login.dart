@@ -4,6 +4,8 @@ import 'package:cari_kost/screen/auth/register,dart.dart';
 
 class login extends StatelessWidget {
   static const nameroute = '/login';
+
+  const login({super.key});
   @override
   Widget build(BuildContext context) {
     final bodywidht = MediaQuery.of(context).size.width;
@@ -294,7 +296,7 @@ class login extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               // height: 50,
                               height: lastbody * 0.15,
                               child: Row(
@@ -347,7 +349,7 @@ class login extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               height: 50,
                               child: Row(
                                 mainAxisAlignment:
@@ -515,7 +517,7 @@ class login extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             height: 50,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -566,7 +568,7 @@ class login extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             height: 50,
                             // width: 300,
                             child: Row(

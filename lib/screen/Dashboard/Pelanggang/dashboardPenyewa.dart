@@ -1,13 +1,17 @@
 import 'package:cari_kost/landingpage.dart';
+import 'package:cari_kost/provider/datakost.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cari_kost/models/kost.dart';
 import 'dart:math';
 import 'package:faker/faker.dart' as faker;
 import 'package:cari_kost/screen/Dashboard/Pelanggang/dashboard-detailkost.dart';
+import 'package:provider/provider.dart';
 
 class dashboardpenyewa extends StatelessWidget {
   static const nameroute = "/dashboardpenyewa";
+
+  const dashboardpenyewa({super.key});
   @override
   Widget build(BuildContext context) {
     final bodyweight = MediaQuery.of(context).size.width;
@@ -50,18 +54,21 @@ class dashboardpenyewa extends StatelessWidget {
     //   Colors.white, Colors.purple, Colors.amber, Colors.red, Colors.cyan,
     // ];
 
-    final List<kost> kostdata = List.generate(20, (Index) {
-      return kost(
-        idkost: 1 + Random().nextInt(20),
-        iduser: 1 + Random().nextInt(100),
-        namakost: faker.faker.internet.userName(),
-        alamatkost: faker.faker.internet.ipv6Address(),
-        gambarkost: "https://picsum.photos/id/$Index/1080/730",
-        hpkost: faker.faker.phoneNumber.hashCode,
-        jumlahkamar: 10 + Random().nextInt(50),
-        hargakamar: 500000 + Random().nextInt(1000000000),
-      );
-    });
+    // final List<kost> kostdata = List.generate(20, (Index) {
+    //   return kost(
+    //     idkost: 1 + Random().nextInt(20),
+    //     iduser: 1 + Random().nextInt(100),
+    //     namakost: faker.faker.internet.userName(),
+    //     alamatkost: faker.faker.internet.ipv6Address(),
+    //     gambarkost: "https://picsum.photos/id/$Index/1080/730",
+    //     hpkost: faker.faker.phoneNumber.hashCode,
+    //     jumlahkamar: 10 + Random().nextInt(50),
+    //     hargakamar: 500000 + Random().nextInt(1000000000),
+    //   );
+    // });
+
+    final datakost = Provider.of<Datakost>(context);
+    final kostdata = datakost.detailkost;
 
     return Scaffold(
         appBar: judul,
@@ -105,7 +112,7 @@ class dashboardpenyewa extends StatelessWidget {
             ],
           ),
         ),
-        body: Container(
+        body: SizedBox(
             width: bodyweight,
             child: SingleChildScrollView(
               child: Column(
@@ -182,6 +189,16 @@ class dashboardpenyewa extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: GridTile(
+                              footer: GridTileBar(
+                                backgroundColor: Colors.cyan,
+                                title: Column(
+                                  children: [
+                                    Text(kostdata[index].namakost),
+                                    Text(kostdata[index].alamatkost),
+                                    Text(kostdata[index].hpkost.toString()),
+                                  ],
+                                ),
+                              ),
                               child: GestureDetector(
                                 onTap: () {
                                   Navigator.of(context).pushNamed(
@@ -193,16 +210,6 @@ class dashboardpenyewa extends StatelessWidget {
                                 child: Image.network(
                                   kostdata[index].gambarkost,
                                   fit: BoxFit.cover,
-                                ),
-                              ),
-                              footer: GridTileBar(
-                                backgroundColor: Colors.cyan,
-                                title: Column(
-                                  children: [
-                                    Text(kostdata[index].namakost),
-                                    Text(kostdata[index].alamatkost),
-                                    Text(kostdata[index].hpkost.toString()),
-                                  ],
                                 ),
                               ),
                             ),

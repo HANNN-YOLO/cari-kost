@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 class register extends StatelessWidget {
   static const nameroute = '/register';
+
+  const register({super.key});
   @override
   Widget build(BuildContext context) {
     final bodywidth = MediaQuery.of(context).size.width;
@@ -322,7 +324,7 @@ class register extends StatelessWidget {
                                   Text("Sebagai"),
                                 ],
                               )),
-                          Container(
+                          SizedBox(
                               width: double.infinity,
                               height: 50,
                               // color: Colors.red,
@@ -539,7 +541,7 @@ class register extends StatelessWidget {
                                   Text("Sebagai"),
                                 ],
                               )),
-                          Container(
+                          SizedBox(
                               width: double.infinity,
                               height: 50,
                               // color: Colors.red,

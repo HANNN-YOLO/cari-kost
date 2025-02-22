@@ -6,6 +6,8 @@ import 'package:cari_kost/screen/Dashboard/Pelanggang/dashboardPenyewa.dart';
 
 class landingpage extends StatelessWidget {
   static const nameroute = "/landingpage";
+
+  const landingpage({super.key});
   @override
   Widget build(BuildContext context) {
     final bodyheight = MediaQuery.of(context).size.height;
@@ -224,7 +226,7 @@ class landingpage extends StatelessWidget {
                           children: [
                             LayoutBuilder(
                               builder: (context, constrait) {
-                                return Container(
+                                return SizedBox(
                                   width: constrait.maxWidth * 0.7,
                                   child: Text(
                                     "Selamat Datang di Cari Kost! Kami hadir untuk membantu Anda menemukan kost impian dengan mudah dan cepat. Jelajahi berbagai pilihan kost yang nyaman dan sesuai dengan kebutuhan Anda. Dengan tampilan sederhana dan informasi lengkap, kami berkomitmen memberikan pengalaman terbaik dalam mencari tempat tinggal",
@@ -330,7 +332,7 @@ class landingpage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Container(
+                          SizedBox(
                               height: 50,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -342,7 +344,7 @@ class landingpage extends StatelessWidget {
                                   Text("Reyhan Rafaidhil")
                                 ],
                               )),
-                          Container(
+                          SizedBox(
                             height: 50,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -354,7 +356,7 @@ class landingpage extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             height: 50,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -366,7 +368,7 @@ class landingpage extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             height: 50,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -465,7 +467,7 @@ class landingpage extends StatelessWidget {
                   child: Row(
                     children: [
                       Expanded(
-                          child: Container(
+                          child: SizedBox(
                             height: lastbody * 0.35,
                             child: Text(
                                 "Cari Kost adalah platform pencarian kost yang dirancang untuk mempermudah Anda menemukan tempat tinggal ideal. Kami menyediakan informasi lengkap mengenai berbagai jenis kost, mulai dari fasilitas, harga, hingga lokasi strategis."),

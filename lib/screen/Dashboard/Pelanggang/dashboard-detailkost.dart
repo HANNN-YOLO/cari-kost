@@ -1,13 +1,17 @@
 import 'package:cari_kost/landingpage.dart';
 import 'package:flutter/material.dart';
 import 'package:cari_kost/screen/Dashboard/Pelanggang/dashboardPenyewa.dart';
+import 'package:cari_kost/provider/datakost.dart';
+import 'package:provider/provider.dart';
 
 class dashboard_detailkost extends StatelessWidget {
   static const nameroute = 'penyewa-detailkost';
+
+  const dashboard_detailkost({super.key});
   @override
   Widget build(BuildContext context) {
-    final penyewa_detailkost =
-        ModalRoute.of(context)?.settings.arguments as String;
+    final penyewaDetailkost = int.parse( ModalRoute.of(context)?.settings.arguments as String);
+    final mydata= Provider.of<Datakost>(context).detailkost.firstWhere((dat) => dat.idkost == penyewaDetailkost);
 
     final bodywidth = MediaQuery.of(context).size.width;
     final bodyheight = MediaQuery.of(context).size.height;
@@ -24,7 +28,7 @@ class dashboard_detailkost extends StatelessWidget {
       ),
       backgroundColor: Colors.blue,
       title: Text(
-        "Detail Kost ke $penyewa_detailkost",
+        "Detail Kost ke $penyewaDetailkost",
         style: TextStyle(color: Colors.white),
       ),
       actions: [
@@ -41,7 +45,10 @@ class dashboard_detailkost extends StatelessWidget {
     );
 
     final lastbody = bodyheight - batas - judul.preferredSize.height;
-    // TODO: implement build
+
+    final datakost = Provider.of<Datakost>(context);
+    final kostdata = datakost.detailkost;
+
     return Scaffold(
       appBar: judul,
       drawer: Drawer(
@@ -90,15 +97,11 @@ class dashboard_detailkost extends StatelessWidget {
       ),
       body: Container(
         child: GridTile(
-            child: Container(
+          child: Image.network(mydata.gambarkost,
           height: lastbody * 0.5,
-          decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              image: DecorationImage(
-                  image: NetworkImage("${penyewa_detailkost}"),
-                  fit: BoxFit.cover,
-                  alignment: Alignment.center)),
-        )),
+          width: bodywidth,
+          ),
+        ),
       ),
     );
   }

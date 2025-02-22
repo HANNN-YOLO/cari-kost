@@ -4,7 +4,7 @@ import 'package:faker/faker.dart' as faker;
 import 'dart:math';
 
 class Datakost with ChangeNotifier {
-  List<kost> _detailkost = List.generate(20, (Index) {
+  final List<kost> _detailkost = List.generate(20, (Index) {
     return kost(
       idkost: 1 + Random().nextInt(20),
       iduser: 1 + Random().nextInt(100),
