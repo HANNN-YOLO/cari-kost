@@ -1,4 +1,4 @@
-# cari_kost
+# cari-kost
 
 A new Flutter project.
 
