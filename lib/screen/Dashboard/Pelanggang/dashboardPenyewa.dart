@@ -179,7 +179,7 @@ class dashboardpenyewa extends StatelessWidget {
                     height: lastbody * 0.8,
                     color: Colors.grey,
                     child: ListView.builder(
-                      itemCount: 20,
+                      itemCount: kostdata.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
@@ -189,16 +189,6 @@ class dashboardpenyewa extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: GridTile(
-                              footer: GridTileBar(
-                                backgroundColor: Colors.cyan,
-                                title: Column(
-                                  children: [
-                                    Text(kostdata[index].namakost),
-                                    Text(kostdata[index].alamatkost),
-                                    Text(kostdata[index].hpkost.toString()),
-                                  ],
-                                ),
-                              ),
                               child: GestureDetector(
                                 onTap: () {
                                   Navigator.of(context).pushNamed(
@@ -210,6 +200,16 @@ class dashboardpenyewa extends StatelessWidget {
                                 child: Image.network(
                                   kostdata[index].gambarkost,
                                   fit: BoxFit.cover,
+                                ),
+                              ),
+                              footer: GridTileBar(
+                                backgroundColor: Colors.cyan,
+                                title: Column(
+                                  children: [
+                                    Text(kostdata[index].namakost),
+                                    Text(kostdata[index].alamatkost),
+                                    Text(kostdata[index].hpkost.toString()),
+                                  ],
                                 ),
                               ),
                             ),
