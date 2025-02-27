@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:cari_kost/landingpage.dart';
+import 'package:cari_kost/screen/Dashboard/Pelanggang/Dashboard-PesanKamar.dart';
 import 'package:flutter/material.dart';
 import 'package:cari_kost/screen/Dashboard/Pelanggang/dashboardPenyewa.dart';
 import 'package:cari_kost/provider/datakost.dart';
@@ -191,7 +192,9 @@ class dashboard_detailkost extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20)
                         )
                       ),
-                      onPressed: (){}, 
+                      onPressed: (){
+                        Navigator.of(context).pushNamed(pesankamar.nameroute);
+                      }, 
                       child: Text(
                         "Ambil Kamar",
                         style: TextStyle(
