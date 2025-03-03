@@ -192,10 +192,10 @@ class pesankamar extends StatelessWidget {
                               child: OutlinedButton(
                                 onPressed: () {
                                   showDatePicker(
-                                    context: context, 
-                                    firstDate: DateTime(1), 
+                                    context: context,
+                                    firstDate: DateTime(1),
                                     lastDate: DateTime(3000),
-                                    )
+                                  );
                                 },
                                 child: Text("Pilih Tanggal"),
                               ),
@@ -206,23 +206,41 @@ class pesankamar extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 Container(
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Container(
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue
-                          ),
-                          onPressed: (){}, 
+                              backgroundColor: Colors.blue,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)
+                                  )
+                                ),
+                          onPressed: () {},
                           child: Text(
                             "Ambil Kamar",
-                            style: TextStyle(
-                              color: Colors.white
-                            ),
+                            style: TextStyle(color: Colors.white),
                           ),
                         ),
+                      ),
+                      Container(
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.red,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)
+                                )
+                              ),
+                            onPressed: () {},
+                            child: Text(
+                              "batal",
+                              style: TextStyle(color: Colors.white),
+                            )),
                       )
                     ],
                   ),
