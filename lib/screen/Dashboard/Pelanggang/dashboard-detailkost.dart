@@ -193,7 +193,10 @@ class dashboard_detailkost extends StatelessWidget {
                         )
                       ),
                       onPressed: (){
-                        Navigator.of(context).pushNamed(pesankamar.nameroute);
+                        Navigator.of(context).pushNamed(
+                          pesankamar.nameroute,
+                          arguments: mydata.idkost.toString(),
+                          );
                       }, 
                       child: Text(
                         "Ambil Kamar",

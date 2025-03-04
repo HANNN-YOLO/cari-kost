@@ -2,11 +2,21 @@ import 'dart:ffi';
 
 import 'package:cari_kost/landingpage.dart';
 import 'package:flutter/material.dart';
+import 'package:cari_kost/models/kost.dart';
+import 'package:cari_kost/provider/datakost.dart';
+import 'package:provider/provider.dart';
+import 'package:cari_kost/screen/Dashboard/Pelanggang/dashboard-detailkost.dart';
 
 class pesankamar extends StatelessWidget {
   static const nameroute = 'pesan-kamar';
   @override
   Widget build(BuildContext context) {
+    final dashboard =
+        int.parse(ModalRoute.of(context)?.settings.arguments as String);
+    final kamar = Provider.of<Datakost>(context)
+        .detailkost
+        .firstWhere((dat) => dat.idkost == dashboard);
+
     final ini = DateTime.now();
     final bodywidth = MediaQuery.of(context).size.width;
     final bodyheight = MediaQuery.of(context).size.height;
@@ -42,6 +52,10 @@ class pesankamar extends StatelessWidget {
     );
 
     final lastbody = bodyheight - batas - judul.preferredSize.height;
+
+    final data = Provider.of<Datakost>(context);
+    final datadata = data.detailkost;
+
     return Scaffold(
       appBar: judul,
       drawer: Drawer(
@@ -114,8 +128,9 @@ class pesankamar extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: bodywidth * 0.04),
                   child: TextField(
+                    readOnly: true,
                     decoration: InputDecoration(
-                      hintText: "Nama Kost",
+                      hintText: "${kamar.namakost}",
                       prefixIcon: Icon(Icons.home),
                       border: OutlineInputBorder(),
                     ),
@@ -133,7 +148,7 @@ class pesankamar extends StatelessWidget {
                   child: TextField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      hintText: "Nama Pemilik Kost",
+                      hintText: "${kamar.iduser}",
                       prefixIcon: Icon(Icons.person),
                     ),
                   ),
@@ -151,6 +166,7 @@ class pesankamar extends StatelessWidget {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: "Nama Penyewa",
+                      hintStyle: TextStyle(color: Colors.grey),
                       prefixIcon: Icon(Icons.person),
                     ),
                   ),
@@ -218,9 +234,7 @@ class pesankamar extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)
-                                  )
-                                ),
+                                  borderRadius: BorderRadius.circular(10))),
                           onPressed: () {},
                           child: Text(
                             "Ambil Kamar",
@@ -233,9 +247,7 @@ class pesankamar extends StatelessWidget {
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.red,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)
-                                )
-                              ),
+                                    borderRadius: BorderRadius.circular(10))),
                             onPressed: () {},
                             child: Text(
                               "batal",
